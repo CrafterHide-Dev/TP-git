@@ -2,16 +2,16 @@
 <footer id="footer">
 	<div class="footerbox">
 		<div class="footeritem">
-			1
+			<button class="ironstyle">Voyager à bas prix</button>
 		</div>
 		<div class="footeritem">
-			2
+			<button class="goldstyle">Voyager de façon luxueuse</button>
 		</div>
 		<div class="footeritem">
-			3
+			<button class="redstyle">Voyages insolites</button>
 		</div>
 		<div class="footeritem">
-			4
+			<button class="blackstyle">Aides disponibles</button>
 		</div>
 	</div>
 	<div class="footerseperator"></div>

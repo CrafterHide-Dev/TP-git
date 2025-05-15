@@ -28,6 +28,25 @@ footer#footer div.footerbox div.footeritem {
 	flex-grow: 1;
 	flex-basis: 0;
 }
+footer#footer div.footerbox div.footeritem button {
+	padding: 12px;
+	font-size: 20px;
+	font-weight: 800;
+	border: 0px;
+}
+footer#footer div.footerbox div.footeritem button.ironstyle {
+	background: linear-gradient(65deg, #f0f0f0 20%, #c9c9c9 25%, #f0f0f0 60%, #c9c9c9 65%, #f0f0f0 100%);
+}
+footer#footer div.footerbox div.footeritem button.goldstyle {
+	background: linear-gradient(65deg, #f7e84c 20%, #d1c22d 25%, #f7e84c 60%, #d1c22d 65%, #f7e84c 100%);
+}
+footer#footer div.footerbox div.footeritem button.redstyle {
+	background: linear-gradient(65deg, #e84b1d 20%, #8a120d 25%, #e84b1d 60%, #8a120d 65%, #e84b1d 100%);
+}
+footer#footer div.footerbox div.footeritem button.blackstyle {
+	background: linear-gradient(65deg, #1b1b1b 20%, #6a6a6a 25%, #1b1b1b 60%, #6a6a6a 65%, #1b1b1b 100%);
+	color: white;
+}
 
 footer#footer div.footerbox div.footertext {
 	display: flex;
