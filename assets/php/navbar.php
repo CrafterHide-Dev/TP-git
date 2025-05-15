@@ -1,6 +1,6 @@
-<nav>
+<nav id="navbar">
 
-	<a href="/index.php">Accueil</a>
-	<a href="/destinations.php">Destinations</a>
+	<a class="navlink" href="/index.php">Accueil</a>
+	<a class="navlink" href="/destinations.php">Destinations</a>
 
 </nav>

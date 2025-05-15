@@ -1,0 +1,6 @@
+nav#navbar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+}
