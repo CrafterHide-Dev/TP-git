@@ -31,13 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<!-- Barre de navigation -->
 		<?php require_once('assets/php/navbar.php'); ?>
 		<!-- /////////////////// -->
+
 		<div class="center">
 			<form class="form" method="post">
 				<div class="title-box">
 					<h2>CONNEXION</h2>
 				</div>
 				<div class="input-box">
-					<label>Nom d'utlisateur :</label>
+					<label>Identifiant :</label>
 					<input type="text" name="username" required>
 				</div>
 				<div class="input-box">

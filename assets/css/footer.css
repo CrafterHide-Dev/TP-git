@@ -1,0 +1,39 @@
+div#footerspacing {
+	margin-top: auto;
+}
+
+footer#footer div.footerseperator {
+	width: 90%;
+	height: 2px;
+	margin: 10px 5%;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+footer#footer {
+	background: linear-gradient(36deg, #34495e 20%, #17202a);
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+}
+
+footer#footer div.footerbox {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+footer#footer div.footerbox div.footeritem {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+footer#footer div.footerbox div.footertext {
+	display: flex;
+	flex-grow: 1;
+}
+footer#footer div.footerbox div.footertext p {
+	font-weight: 800;
+	text-align: center;
+}

@@ -16,6 +16,29 @@
 		<?php require_once('assets/php/navbar.php'); ?>
 		<!-- /////////////////// -->
 
+		<div class="center">
+			<form class="form" method="post">
+				<div class="title-box">
+					<h2>INSCRIPTION</h2>
+				</div>
+				<div class="input-box">
+					<label>Nom d'utlisateur :</label>
+					<input type="text" name="username" required>
+				</div>
+				<div class="input-box">
+					<label>Mot de passe :</label>
+					<input type="password" name="password" required>
+				</div>
+				<div class="input-box">
+					<label>Confirmer le mot de passe :</label>
+					<input type="password" name="repassword" required>
+				</div>
+				<div class="submit-box">
+					<button name="submit" value="connection">S'inscrire !</button>
+				</div>
+			</form>
+		</div>
+
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
 		<!-- //////////// -->

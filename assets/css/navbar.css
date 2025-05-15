@@ -2,7 +2,14 @@ nav#navbar {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	justify-content: space-between;
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+nav#navbar div.navbox {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }
 
 nav#navbar a.navlink {
