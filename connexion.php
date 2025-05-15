@@ -31,23 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<!-- Barre de navigation -->
 		<?php require_once('assets/php/navbar.php'); ?>
 		<!-- /////////////////// -->
-
-		<form class="form" method="post">
-			<div class="title-box">
-				<h2>CONNEXION</h2>
-			</div>
-			<div class="input-box">
-				<label>Nom d'utlisateur :</label>
-				<input type="text" name="username" required>
-			</div>
-			<div class="input-box">
-				<label>Mot de passe :</label>
-				<input type="password" name="password" required>
-			</div>
-			<div class="submit-box">
-				<button name="submit" value="connection">Se connecter !</button>
-			</div>
-		</form>
+		<div class="center">
+			<form class="form" method="post">
+				<div class="title-box">
+					<h2>CONNEXION</h2>
+				</div>
+				<div class="input-box">
+					<label>Nom d'utlisateur :</label>
+					<input type="text" name="username" required>
+				</div>
+				<div class="input-box">
+					<label>Mot de passe :</label>
+					<input type="password" name="password" required>
+				</div>
+				<div class="submit-box">
+					<button name="submit" value="connection">Se connecter !</button>
+				</div>
+			</form>
+		</div>
 
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
