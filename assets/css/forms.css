@@ -6,6 +6,7 @@ form.form {
 	background: linear-gradient(36deg, #34495e 20%, #17202a);
 	color: white;
 	max-width: 800px;
+	min-width: 50%;
 }
 
 form.form div.title-box {
