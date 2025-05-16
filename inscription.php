@@ -4,6 +4,17 @@ session_start();
 
 include_once('db/connect_db.php');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	if (isset($_POST['username'], $_POST['password'], $_POST['repassword']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
+
+
+
+	} else {
+		$error = "Veuillez remplir tous les champs !";
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +22,7 @@ include_once('db/connect_db.php');
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title></title>
+		<title>Inscription</title>
 		<!-- Fichiers CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/general.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
