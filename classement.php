@@ -11,7 +11,7 @@ include_once('db/connect_db.php');
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>OutterSky</title>
+		<title>Classement</title>
 		<!-- Fichiers CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/general.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
