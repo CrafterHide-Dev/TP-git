@@ -6,13 +6,20 @@ include_once('db/connect_db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	if ($_POST["username"] == $username && $_POST["password"] == $password) {
-		$_SESSION["login"] = true;
-		$_SESSION["username"] = $username;
-		header("Location: index.php");
-		exit;
+	if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+		$username = "admin";
+		$password = "1111";
+		
+		if ($_POST["username"] == $username && $_POST["password"] == $password) {
+			$_SESSION["login"] = true;
+			$_SESSION["username"] = $username;
+			header("Location: index.php");
+			exit;
+		} else {
+			$error = "Les identifiants sont incorrects.";
+		}
 	} else {
-		$error = "Les identifiants sont incorrect";
+		$error = "Veuillez remplir tous les champs !";
 	}
 }
 ?>
@@ -48,11 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<label>Mot de passe :</label>
 					<input type="password" name="password" required>
 				</div>
+				<?php if (isset($error) && !empty($error)) { ?>
+				<div class="input-box">
+					<label class="error"><?= $error; ?></label>
+				</div>
+				<?php } ?>
 				<div class="submit-box">
 					<button name="submit" value="connection">Se connecter !</button>
 				</div>
 			</form>
 		</div>
+
 
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
