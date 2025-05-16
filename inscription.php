@@ -10,8 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if (strlen($_POST['username']) >= 3 && strlen($_POST['username']) <= 16) {
 
-			if (strlen($_POST['password']) >= 10 && ...) {
+			if (strlen($_POST['password']) >= 10 && preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password) && preg_match('/[\W_]/', $password)) {
 
+				
+
+			} else {
+				$error = "Le mot de passe doit faire au moins 10 caractères avec au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial !"
 			}
 
 		} else {
