@@ -8,7 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (isset($_POST['username'], $_POST['password'], $_POST['repassword']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
 
+		if (strlen($_POST['username']) >= 3 && strlen($_POST['username']) <= 16) {
 
+			if (strlen($_POST['password']) >= 10 && ...) {
+
+			}
+
+		} else {
+			$error = "Le nom d'utilisateur doit faire entre 3 et 16 caractères !";
+		}
 
 	} else {
 		$error = "Veuillez remplir tous les champs !";
@@ -55,6 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<label>Confirmer le mot de passe :</label>
 					<input type="password" name="repassword" required>
 				</div>
+				<?php if (isset($error) && !empty($error)) { ?>
+				<div class="input-box">
+					<label class="error"><?= $error; ?></label>
+				</div>
+				<?php } ?>
 				<div class="submit-box">
 					<button name="submit" value="connection">S'inscrire !</button>
 				</div>
