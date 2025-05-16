@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+include_once('db/connect_db.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 	<head>

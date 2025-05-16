@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+include_once('db/connect_db.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -27,7 +35,9 @@
 				</div>
 				<div class="input-box">
 					<label>Mot de passe :</label>
-					<input type="password" name="password" required>
+					<div class="inline">
+						<input type="password" name="password" style="flex-grow: 1;" required>
+					</div>
 				</div>
 				<div class="input-box">
 					<label>Confirmer le mot de passe :</label>

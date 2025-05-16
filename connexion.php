@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+include_once('db/connect_db.php');
+
+?>
+
 <?php 
 	session_start();
 

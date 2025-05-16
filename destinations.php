@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+include_once('db/connect_db.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -14,6 +22,20 @@
 		<!-- Barre de navigation -->
 		<?php require_once('assets/php/navbar.php'); ?>
 		<!-- /////////////////// -->
+
+		<div class="displayer">
+			<div class="display">
+				<div class="display-header">
+
+				</div>
+				<div class="display-content">
+
+				</div>
+				<div class="display-footer">
+
+				</div>
+			</div>
+		</div>
 
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
