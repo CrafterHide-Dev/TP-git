@@ -38,4 +38,14 @@
 	
 	// Faire une connexion à votre fonction
 	$BDD = new connexionDB();
+
+	/*
+
+	$req_utilisateurs = $BDD->query('SELECT * FROM utilisateurs');
+
+	foreach ($req_utilisateurs as $utilisateur) {
+		$utilisateur['id'];
+	}
+
+	*/
 ?>
