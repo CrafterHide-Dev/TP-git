@@ -36,7 +36,8 @@ include_once('db/connect_db.php');
 				<div class="input-box">
 					<label>Mot de passe :</label>
 					<div class="inline">
-						<input type="password" name="password" style="flex-grow: 1;" required>
+						<input id="checker-content" type="password" name="password" style="flex-grow: 1;" required>
+						<div id="password-checker"></div>
 					</div>
 				</div>
 				<div class="input-box">

@@ -4,11 +4,6 @@ session_start();
 
 include_once('db/connect_db.php');
 
-?>
-
-<?php 
-	session_start();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($_POST["username"] == $username && $_POST["password"] == $password) {
