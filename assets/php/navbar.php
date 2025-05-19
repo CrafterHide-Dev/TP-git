@@ -10,7 +10,8 @@
 		<?php
 		if (isset($_SESSION['user_id']) AND !empty($_SESSION['user_id'])) {
 		?>
-		<a class="navuser" href="/moncompte.php">[USERNAME]</a>
+		<a class="navuser" href="/moncompte.php"><?= isset($_SESSION['username']) ? $_SESSION['username'] : "Mon compte" ?></a>
+		<a class="navdisconnect" href="/deconnexion.php"><i class="fa-solid fa-user-lock"></i></a>
 		<?php
 		} else {
 		?>

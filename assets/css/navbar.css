@@ -42,3 +42,42 @@ nav#navbar a.navlink:hover::after {
 
 	transition: width 0.2s;
 }
+
+nav#navbar a.navuser {
+	padding: 10px;
+	padding-left: 20px;
+	font-weight: 800;
+	font-size: 22px;
+
+	text-decoration-line: none;
+	background: linear-gradient(240deg, rgba(118, 68, 138, 1) 50%, transparent 80%);
+	color: black;
+}
+
+nav#navbar a.navdisconnect {
+	padding: 10px;
+	font-weight: 800;
+	font-size: 22px;
+
+	text-decoration-line: none;
+	background-color: rgba(118, 68, 138, 1);
+	color: black;
+}
+nav#navbar a.navdisconnect i {
+	width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 50%;
+
+	transition: background 0.1s;
+}
+nav#navbar a.navdisconnect:hover i {
+	background-color: rgba(0, 0, 0, 1);
+
+	transition: background 0.1s;
+}

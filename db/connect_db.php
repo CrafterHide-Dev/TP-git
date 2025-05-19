@@ -34,6 +34,10 @@
 			$req = $this->connexion->prepare($sql);
 			$req->execute($data);
 		}
+
+		public function getId() {
+			$userId = $this->connexion->lastInsertId();
+		}
 	}
 	
 	// Faire une connexion à votre fonction

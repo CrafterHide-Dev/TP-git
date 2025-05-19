@@ -17,6 +17,9 @@ include_once('db/connect_db.php');
 		<link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/footer.css">
 		<!-- //////////// -->
+		<!-- FONTAWESOME -->
+		<script src="https://kit.fontawesome.com/82664567ab.js" crossorigin="anonymous"></script>
+		<!-- /////////// -->
 	</head>
 	<body>
 		<!-- Barre de navigation -->

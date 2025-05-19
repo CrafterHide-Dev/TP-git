@@ -6,20 +6,38 @@ include_once('db/connect_db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	if (isset($_POST['username'], $_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-		$username = "admin";
-		$password = "1111";
-		
-		if ($_POST["username"] == $username && $_POST["password"] == $password) {
-			$_SESSION["login"] = true;
-			$_SESSION["username"] = $username;
-			header("Location: index.php");
-			exit;
-		} else {
-			$error = "Les identifiants sont incorrects.";
+	$valid = true;
+	$pass_verified = false;
+
+	if (!isset($_POST['username']) || empty($_POST['username'])) {
+		$error['username'] = "Veuillez remplir le nom d'utilisateur !";
+		$valid = false;
+	}
+
+	if (isset($_POST['password']) && !empty($_POST['password'])) {
+
+		if ($valid) {
+
+			$req_account_verify = $BDD->query('SELECT * FROM utilisateurs WHERE username = "'.$_POST['username'].'"');
+
+			foreach ($req_account_verify->fetchAll() as $verify) {
+				$id = $verify['id'];
+				if (password_verify($_POST['password'], $verify['password'])) {
+					$pass_verified = true;
+				}
+			}
+
 		}
+
 	} else {
-		$error = "Veuillez remplir tous les champs !";
+		$error['username'] = "Veuillez remplir le mot de passe !";
+		$valid = false;
+	}
+
+	if ($pass_verified) {
+		$_SESSION['user_id'] = $id;
+		header('Location: /');
+		exit;
 	}
 }
 ?>
@@ -36,6 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<link rel="stylesheet" type="text/css" href="assets/css/footer.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/forms.css">
 		<!-- //////////// -->
+		<!-- FONTAWESOME -->
+		<script src="https://kit.fontawesome.com/82664567ab.js" crossorigin="anonymous"></script>
+		<!-- /////////// -->
 	</head>
 	<body>
 		<!-- Barre de navigation -->
@@ -49,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</div>
 				<div class="input-box">
 					<label>Identifiant :</label>
-					<input type="text" name="username" required>
+					<input type="text" name="username" value="<?= isset($_POST['username']) ? $_POST['username'] : "" ?>" required>
 				</div>
 				<div class="input-box">
 					<label>Mot de passe :</label>
