@@ -26,8 +26,11 @@ include_once('db/connect_db.php');
 		<!-- Barre de navigation -->
 		<?php require_once('assets/php/navbar.php'); ?>
 		<!-- /////////////////// -->
+		<?php
+		if (!isset($_GET['id']) OR empty($_GET['id'])) {
+		?>
 		<section class="destinations" id="destinations" aria-label="Destinations mises en avant">
-            <h3>Destinations à découvrir</h3>
+            <h3>Nos destinations</h3>
             <div class="cards" role="list">
 				<?php
 				$req_two_dests = $BDD->query('SELECT * FROM destinations');
@@ -46,6 +49,9 @@ include_once('db/connect_db.php');
                 ?>
             </div>
         </section>
+        <?php
+    	}
+        ?>
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
 		<!-- //////////// -->

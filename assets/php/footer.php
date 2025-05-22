@@ -2,16 +2,16 @@
 <footer id="footer">
 	<div class="footerbox">
 		<div class="footeritem">
-			<button class="ironstyle">Voyager à bas prix</button>
+			<button class="ironstyle" onclick="document.location.href='/destinations?type=lowcost';">Voyager à bas prix</button>
 		</div>
 		<div class="footeritem">
-			<button class="goldstyle">Voyager de façon luxueuse</button>
+			<button class="goldstyle" onclick="document.location.href='/destinations?type=luxurious';">Voyager de façon luxueuse</button>
 		</div>
 		<div class="footeritem">
-			<button class="redstyle">Voyages insolites</button>
+			<button class="redstyle" onclick="document.location.href='/destinations?type=unusual';">Voyages insolites</button>
 		</div>
 		<div class="footeritem">
-			<button class="blackstyle">Aides disponibles</button>
+			<button class="blackstyle" onclick="document.location.href='/destinations?type=allowhelps';">Aides disponibles</button>
 		</div>
 	</div>
 	<div class="footerseperator"></div>
