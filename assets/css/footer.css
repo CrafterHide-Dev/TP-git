@@ -52,6 +52,7 @@ footer#footer div.footerbox div.footeritem button.blackstyle {
 footer#footer div.footerbox div.footertext {
 	display: flex;
 	flex-grow: 1;
+	justify-content: center;
 }
 footer#footer div.footerbox div.footertext p {
 	font-weight: 800;

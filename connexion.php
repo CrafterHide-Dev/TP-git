@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if ($valid) {
 
-			$req_account_verify = $BDD->query('SELECT * FROM utilisateurs WHERE username = "'.$_POST['username'].'"');
+			$req_account_verify = $BDD->query('SELECT id,password FROM utilisateurs WHERE username = "'.$_POST['username'].'"');
 
 			foreach ($req_account_verify->fetchAll() as $verify) {
 				$id = $verify['id'];
@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($pass_verified) {
 		$_SESSION['user_id'] = $id;
+		$_SESSION['user_name'] = $_POST['username'];
 		header('Location: /');
 		exit;
 	}

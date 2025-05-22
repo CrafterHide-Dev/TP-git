@@ -74,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$req_insert_user = $BDD->prepare('INSERT INTO utilisateurs (username, password) VALUES (?, ?)', [$_POST['username'], $hashed_password]);
 
 		$_SESSION['user_id'] = $BDD->getId();
+		$_SESSION['user_name'] = $_POST['username'];
 
 		header('Location: /');
 		exit;
