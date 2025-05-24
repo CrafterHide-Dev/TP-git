@@ -37,7 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($pass_verified) {
 		$_SESSION['user_id'] = $id;
 		$_SESSION['user_name'] = $_POST['username'];
-		header('Location: /');
+		if (isset($_GET['next']) AND !empty($_GET['next'])) {
+			header('Location: '.$_GET['next']);
+		} else {
+			header('Location: /');
+		}
 		exit;
 	}
 }
