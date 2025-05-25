@@ -1,0 +1,42 @@
+#carousel {
+	position: relative;
+	width: 300px;
+	overflow: hidden;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #ccc;
+}
+
+#carousel .carousel-track {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+#carousel .slide {
+	min-width: 300px;
+	height: 200px;
+	background: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2em;
+}
+
+#carousel button.prev, button.next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(0,0,0,0.5);
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#carousel button.prev {
+	left: 10px;
+}
+
+#carousel button.next {
+	right: 10px;
+}

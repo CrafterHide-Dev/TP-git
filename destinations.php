@@ -26,6 +26,7 @@ if (isset($_POST['redirect'])) {
 		<link rel="stylesheet" type="text/css" href="assets/css/footer.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/destinations.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/forms.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/carousel.css">
 		<!-- //////////// -->
 		<!-- FONTAWESOME -->
 		<script src="https://kit.fontawesome.com/82664567ab.js" crossorigin="anonymous"></script>
@@ -89,7 +90,7 @@ if (isset($_POST['redirect'])) {
 		<section class="destinations" id="destinations" aria-label="Destination">
             <div class="cards" role="list">
 				<?php
-				$req_dest_id = $BDD->query('SELECT destinations.*, AVG(avis.score) AS moyenne_avis FROM destinations LEFT JOIN avis ON destinations.id = avis.dest_id WHERE destinations.id=? GROUP BY destinations.id', [$_GET['id']]);
+				$req_dest_id = $BDD->query('SELECT destinations.*, AVG(avis.score) AS moyenne_avis, COUNT(avis.id) AS nombre_avis FROM destinations LEFT JOIN avis ON destinations.id = avis.dest_id WHERE destinations.id=? GROUP BY destinations.id', [$_GET['id']]);
 				foreach ($req_dest_id->fetchAll() as $dest) {
 				?>
                 <article class="card" role="listitem" tabindex="0">
@@ -122,7 +123,7 @@ if (isset($_POST['redirect'])) {
                         		$stars = '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
                         	}
                         ?>
-                        <p style="font-weight: 900;"><?= $stars; ?></p>
+                        <p style="font-weight: 900;"><?= $stars; ?> (<?= $dest['nombre_avis']; ?> avis)</p>
                         <?php
                     	} else {
                         ?>
@@ -140,6 +141,10 @@ if (isset($_POST['redirect'])) {
 								<div class="title-box">
 									<h2>DONNEZ VOTRE AVIS</h2>
 								</div>
+								<?php
+								$req_user_comment_exists = $BDD->query('SELECT * FROM avis WHERE user_id = ? AND dest_id = ?', [$_SESSION['user_id'], $_GET['id']]);
+								if ($req_user_comment_exists->rowCount() == 0) {
+								?>
 								<div class="input-box">
 									<label>Note :</label>
 									<input type="number" min="0" max="5" name="score" required>
@@ -151,6 +156,15 @@ if (isset($_POST['redirect'])) {
 								<div class="submit-box">
 									<button name="submit" value="send">Envoyer !</button>
 								</div>
+								<?php
+								} else {
+								?>
+								<div class="input-box">
+									<label class="error">Vous avez déjà posté un avis sur cette destination !</label>
+								</div>
+								<?php
+								}
+								?>
 							</form>
 							<?php
 							} else {
@@ -177,6 +191,37 @@ if (isset($_POST['redirect'])) {
                 ?>
             </div>
         </section>
+        <?php
+    	}
+        if (isset($stars)) {
+        ?>
+		<section class="destinations" id="avisautres" aria-label="Avis vérifiés">
+            <h3>Les avis</h3>
+            <div class="cards" role="list">
+                <article class="card" role="listitem" tabindex="0">
+                	<div id="carousel">
+						<div class="carousel-track">
+							<?php
+							$req_comments = $BDD->query('SELECT avis.score, utilisateurs.username FROM avis, utilisateurs WHERE avis.user_id = utilisateurs.id AND avis.dest_id = ? ORDER BY utilisateurs.id DESC LIMIT 10', [$_GET['id']]);
+							foreach ($req_comments as $comment) {
+							?>
+							<div class="slide">
+								<p class="slide-username"><?= $comment['username']; ?></p>
+								<p class="slide-note"><?= $comment['score']; ?></p>
+							</div>
+							<?php
+
+							?>
+						</div>
+						<button class="prev">&#10094;</button>
+						<button class="next">&#10095;</button>
+                	</div>
+                </article>
+            </div>
+        </section>
+        <?php
+    	}
+        ?>
 		<section class="destinations" id="autresdestinations" aria-label="Autres destinations">
             <h3>Autres destinations</h3>
             <div class="cards" role="list">
@@ -203,5 +248,31 @@ if (isset($_POST['redirect'])) {
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
 		<!-- //////////// -->
+		<!-- JS SCRIPTS -->
+		<script>
+			const track = document.querySelector('.carousel-track');
+			const slides = Array.from(track.children);
+			const nextBtn = document.querySelector('.next');
+			const prevBtn = document.querySelector('.prev');
+
+			let index = 0;
+
+			nextBtn.addEventListener('click', () => {
+				index = (index + 1) % slides.length;
+				updateCarousel();
+			});
+
+			prevBtn.addEventListener('click', () => {
+				index = (index - 1 + slides.length) % slides.length;
+				updateCarousel();
+			});
+
+			function updateCarousel() {
+				const slideWidth = slides[0].getBoundingClientRect().width;
+				track.style.transform = `translateX(-${slideWidth * index}px)`;
+			}
+
+		</script>
+		<!-- ////////// -->
 	</body>
 </html>
