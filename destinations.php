@@ -4,6 +4,34 @@ session_start();
 
 include_once('db/connect_db.php');
 
+if (isset($_POST['submit'])) {
+	
+	$valid = true;
+	if (isset($_POST['score']) && !empty($_POST['score'])) {
+		if($_POST['score'] < 0 || $_POST['score'] > 5) {
+			$valid = false;
+			$error['score'] = "La note doit être comprise entre 0 et 5 !";
+		}
+	} else {
+		$valid = false;
+		$error['score'] = "Veuillez définir la note !";
+	}
+
+	if ($valid) {
+
+		if (isset($_POST['comment']) && !empty($_POST['comment'])) {
+			$req_insert_comment_empty = $BDD->prepare('INSERT INTO avis (user_id, dest_id, score, comment) VALUES (?, ?, ?, ?)', [$_SESSION['user_id'], $_GET['id'], $_POST['score'], $_POST['comment']]);
+		} else {
+			$req_insert_comment_empty = $BDD->prepare('INSERT INTO avis (user_id, dest_id, score) VALUES (?, ?, ?)', [$_SESSION['user_id'], $_GET['id'], $_POST['score']]);
+		}
+
+		header('Refresh: 0');
+		exit;
+
+	}
+
+}
+
 if (isset($_POST['redirect'])) {
 	if ($_POST['redirect'] == "connexion") {
 		header('Location: /connexion.php?next=/destinations.php?id='.$_GET['id']);
@@ -149,6 +177,11 @@ if (isset($_POST['redirect'])) {
 									<label>Note :</label>
 									<input type="number" min="0" max="5" name="score" required>
 								</div>
+								<?php if (isset($error['score']) && !empty($error['score'])) { ?>
+								<div class="input-box">
+									<label class="error"><?= $error['score']; ?></label>
+								</div>
+								<?php } ?>
 								<div class="input-box">
 									<label>Commentaire :</label>
 									<textarea name="comment"></textarea>
@@ -202,15 +235,16 @@ if (isset($_POST['redirect'])) {
                 	<div id="carousel">
 						<div class="carousel-track">
 							<?php
-							$req_comments = $BDD->query('SELECT avis.score, utilisateurs.username FROM avis, utilisateurs WHERE avis.user_id = utilisateurs.id AND avis.dest_id = ? ORDER BY utilisateurs.id DESC LIMIT 10', [$_GET['id']]);
+							$req_comments = $BDD->query('SELECT avis.score, avis.comment, utilisateurs.username FROM avis, utilisateurs WHERE avis.user_id = utilisateurs.id AND avis.dest_id = ? ORDER BY utilisateurs.id DESC LIMIT 10', [$_GET['id']]);
 							foreach ($req_comments as $comment) {
 							?>
-							<div class="slide">
+							<div class="slide" style="display: flex; flex-direction: column;">
 								<p class="slide-username"><?= $comment['username']; ?></p>
 								<p class="slide-note"><?= $comment['score']; ?></p>
+								<p class="slide-comment"><?= $comment['comment']; ?></p>
 							</div>
 							<?php
-
+							}
 							?>
 						</div>
 						<button class="prev">&#10094;</button>
@@ -242,9 +276,6 @@ if (isset($_POST['redirect'])) {
                 ?>
             </div>
         </section>
-    	<?php
-    	}
-        ?>
 		<!-- Pied de page -->
 		<?php require_once('assets/php/footer.php'); ?>
 		<!-- //////////// -->
